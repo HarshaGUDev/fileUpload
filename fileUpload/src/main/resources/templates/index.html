@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous"></link>
+
+<!-- Latest compiled and minified JavaScript -->
+<link rel="stylesheet" href="public/css/style.css"></link>
+</head>
+
+<body ng-app="uploadXml">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<img src="\public\css\image\accion-labs-logo.png" />
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="http://accionlabs.com/">Home</a></li>
+				<li><a href="http://accionlabs.com/#homepage_solutions">Solutions</a></li>
+				<li><a href="http://accionlabs.com/#homepage_services">Services</a></li>
+				<li><a href="http://accionlabs.com/contact/">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br />
+	<br />
+	<br />
+	<div>
+		<div class="col-md-7 col-md-offset-4">
+
+			<div ng-controller="excelSheetCtrl">
+
+				<div class="form-group">
+
+					<label for="upload">Employee Details:</label>
+					<div class="row">
+						<div class="col-md-6">
+							<input type="file" file-model="myFile"
+								ng-disabled="disableEmpInfo" class="form-control"
+								ng-click="disableAttendance=true" />
+						</div>
+
+						<div class="col-md-1">
+							<button class="btn btn-primary pull-right"
+								ng-disabled="disableEmpInfo" ng-click="empDetailsUploadFile()">Upload</button>
+						</div>
+						<br />
+					</div>
+					<loading-bar class="btn btn-primary   pull-left" ng-if="empInfo"></loading-bar>
+					<div class="alert alert-info col-md-6" role="alert"
+						ng-show="showEmpMessage">
+						<strong>{{message}}</strong>
+					</div>
+
+					
+				</div >
+
+				<div class="form-group" style="clear:both">
+					<label for="upload">Attendance Details:</label>
+					<div class="row">
+						<div class="col-md-6">
+							<input type="file" ng-click="disableEmpInfo=true"
+								ng-disabled="disableAttendance" file-model="myFile"
+								class="form-control" />
+						</div>
+
+						<div class="col-md-1">
+							<button class="btn btn-primary pull-right"
+								ng-click="attendanceUploadFile()"
+								ng-disabled="disableAttendance">Upload</button>
+						</div>
+						<br />
+					</div>
+					<loading-bar class="btn btn-primary pull-left" ng-if="attendance"></loading-bar>
+					<div class="alert alert-info col-md-6" role="alert"
+						ng-show="showAttendanceMessage">
+						<strong>{{message}}</strong>
+					</div>
+
+				</div>
+				<br />
+				<div class="col-md-offset-3" style="clear:both">
+					<button class="btn btn-primary" ng-click="clear()">Clear</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript" src="/js/controllers/uploadController.js"></script>
+<script type="text/javascript" src="/js/directives/uploadDirective.js"></script>
+<script type="text/javascript" src="/js/services/uploadService.js"></script>
+<script type="text/javascript" src="/js/directives/loadingDirectives.js"></script>
+
+</html>
